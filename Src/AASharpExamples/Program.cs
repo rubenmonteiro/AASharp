@@ -4,11 +4,17 @@ using AASharp;
 namespace AASharpTest
 {
     class Program
-    {   
+    {
         static void Main(string[] args)
         {
-            var bHighPrecision = false;
-            
+            var bHighPrecision = true;
+            long Year = 0;
+            long Month = 0;
+            long Day = 0;
+            long Hour = 0;
+            long Minute = 0;
+            double Second = 0;
+
             //Calculate the topocentric horizontal position of the Sun for Palomar Observatory on midnight UTC for the 21st of September 2007
             AASDate dateSunCalc = new AASDate(2007, 9, 21, true);
             double JDSun = dateSunCalc.Julian + AASDynamicalTime.DeltaT(dateSunCalc.Julian) / 86400.0;
@@ -26,7 +32,7 @@ namespace AASharpTest
             AAS2DCoordinate SunHorizontal = AASCoordinateTransformation.Equatorial2Horizontal(LocalHourAngle, SunTopo.Y, Latitude);
             SunHorizontal.Y += AASRefraction.RefractionFromTrue(SunHorizontal.Y, 1013, 10);
 
-            //The result above should be that we have a setting Sun at 21 degrees above the horizon at azimuth 14 degrees south of the westerly horizon  
+            //The result above should be that we have a setting Sun at 21 degrees above the horizon at azimuth 14 degrees south of the westerly horizon
 
 
             //Calculate the topocentric horizontal position of the Moon for Palomar Observatory on midnight UTC for the 21st of September 2007
@@ -47,7 +53,7 @@ namespace AASharpTest
             AAS2DCoordinate MoonHorizontal = AASCoordinateTransformation.Equatorial2Horizontal(LocalHourAngle, MoonTopo.Y, Latitude);
             MoonHorizontal.Y += AASRefraction.RefractionFromTrue(MoonHorizontal.Y, 1013, 10);
 
-            //The result above should be that we have a rising Moon at 17 degrees above the horizon at azimuth 38 degrees east of the southern horizon  
+            //The result above should be that we have a rising Moon at 17 degrees above the horizon at azimuth 38 degrees east of the southern horizon
 
             //Do a full round trip test on AASDate across a nice wide range. Note we should expect
             //some printfs to appear during this test (Specifically a monotonic error for 15 October 1582)
@@ -70,8 +76,8 @@ namespace AASharpTest
                             Console.Write(string.Format("Julian Day monotonic bug with date {0}/{1}/{2}\n", _YYYY, MMMM, DDDD));
                         prevJulian = currentJulian;
 
-                        //Only do round trip tests between the Julian and Gregorian calendars after the papal 
-                        //reform. This is because the AASDate class does not support the propalactic Gregorian 
+                        //Only do round trip tests between the Julian and Gregorian calendars after the papal
+                        //reform. This is because the AASDate class does not support the propalactic Gregorian
                         //calendar, while it does fully support the propalactic Julian calendar.
                         if (bGregorian)
                         {
@@ -89,12 +95,12 @@ namespace AASharpTest
 
             AASDate date = new AASDate();
             date.Set(2000, 1, 1, 12, 1, 2.3, true);
-            long Year = 0;
-            long Month = 0;
-            long Day = 0;
-            long Hour = 0;
-            long Minute = 0;
-            double Second = 0;
+            //long Year = 0;
+            //long Month = 0;
+            //long Day = 0;
+            //long Hour = 0;
+            //long Minute = 0;
+            //double Second = 0;
             date.Get(ref Year, ref Month, ref Day, ref Hour, ref Minute, ref Second);
             long DaysInMonth = date.DaysInMonth();
             long DaysInYear = date.DaysInYear();
@@ -618,11 +624,11 @@ namespace AASharpTest
 
             double[] x1 = { 29.43, 30.97, 27.69, 28.11, 31.58, 33.05 };
             double[] y1 = { 0.4913598528, 0.5145891926, 0.4646875083, 0.4711658342, 0.5236885653, 0.5453707057 };
-			
+
             double Y4 = AASInterpolate.LagrangeInterpolate(30, 6, x1, y1);
             double Y5 = AASInterpolate.LagrangeInterpolate(0, 6, x1, y1);
             double Y6 = AASInterpolate.LagrangeInterpolate(90, 6, x1, y1);
-           
+
             double Alpha1 = AASCoordinateTransformation.DMSToDegrees(2, 42, 43.25);
             double Alpha2 = AASCoordinateTransformation.DMSToDegrees(2, 46, 55.51);
             double Alpha3 = AASCoordinateTransformation.DMSToDegrees(2, 51, 07.69);
@@ -679,7 +685,7 @@ namespace AASharpTest
                 Console.Write(string.Format("Venus does not set for Boston for UTC {0}/{1}/{2}\n", (int)(Year), (int)(Month), (int)(Day)));
             }
 
-            //Calculate the time of moon set for 11th of August 2009 UTC for Palomar Observatory 
+            //Calculate the time of moon set for 11th of August 2009 UTC for Palomar Observatory
             int YYYY = 2011;
             int MM = 8;
             int DD = 10;
