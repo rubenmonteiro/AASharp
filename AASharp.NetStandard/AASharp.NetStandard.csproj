@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>netstandard2.0;net46</TargetFrameworks>
+    <TargetFrameworks>netstandard2.0;net45;net46</TargetFrameworks>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageId>AASharp.Net</PackageId>
     <Authors>Joe Sauve</Authors>
@@ -15,6 +15,7 @@ AASharp is a C# port of PJ Naughter's static C++ library, AA+. Naughter's librar
     <RepositoryType>git</RepositoryType>
     <PackageProjectUrl>https://github.com/jsauve/AASharp</PackageProjectUrl>
     <PackageLicenseUrl>https://github.com/jsauve/AASharp</PackageLicenseUrl>
+    <Version>2.0.0</Version>
   </PropertyGroup>
 
 </Project>
